@@ -9,7 +9,10 @@ set shiftwidth=4                " 自動インデントに使われるスペー�
 set backspace=2                 " 多くのターミナルでバックスペースの挙動を修正
 set hlsearch                    " 検索結果をハイライトする
 colorscheme murphy              " カラースキームを変更
-
+" 端末が広ければ行番号を表示する
+if &co > 80
+    set number
+endif
 
 " swapファイル置き場を指定
 if !isdirectory(expand("$HOME/.vim/swap"))
@@ -41,20 +44,20 @@ endif
 
 " vim-plugでプラグインを管理する
 call plug#begin()
-Plug 'tpope/vim-vinegar'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mileszs/ack.vim'
-Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-vinegar'                    " -でnetrwを開く
+Plug 'ctrlpvim/ctrlp.vim'                   " Ctrl+pであいまい検索
+Plug 'mileszs/ack.vim'                      " 検索コマンドAckとの統合
+Plug 'easymotion/vim-easymotion'            " より良い移動コマンド
 Plug 'junegunn/vim-plug'
 let g:plug_timeout = 300 " YouCompleteMeはコンパイルに時間がかかるためタイムアウトを伸ばす
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
-Plug 'sjl/gundo.vim'
+Plug 'sjl/gundo.vim'                        " undoツリーの可視化
 Plug 'tpope/vim-fugitive'
-Plug 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'       " より良いtmuxとの統合
 Plug 'janko-m/vim-test'
-Plug 'vim-scripts/ScrollColors'
-Plug 'flazz/vim-colorschemes'
-Plug 'vim-airline/vim-airline'
+Plug 'vim-scripts/ScrollColors'             " カラースキーム確認を容易に
+Plug 'flazz/vim-colorschemes'               " カラースキーム
+Plug 'vim-airline/vim-airline'              " より良いステータスライン
 call plug#end()
 
 noremap <leader>] :YcmCompleter GoTo<cr>    " 関数定義へジャンプ
